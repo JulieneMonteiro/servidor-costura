@@ -27,56 +27,49 @@ O **CosturaPro** foi desenhado em uma abordagem de produto evolutiva:
 
 ---
 
-##  Arquitetura do MVP (Backend & Sincronização)
+## Arquitetura do MVP (Backend & Sincronização)
 
-Este repositório contém a **API RESTful** responsável por garantir o backup e a sincronização dos dados coletados pelo aplicativo móvel:
+Este repositório contém a API RESTful responsável por garantir o backup e a sincronização dos dados coletados pelo aplicativo móvel:
 
-* **Offline-First:** O app móvel coleta dados e realiza os cálculos mesmo sem internet; quando a conexão é restabelecida, a sincronização é acionada.
-* **Autenticação Segura (JWT):** Controle de sessão com tokens de expiração programada para tráfego seguro de dados de clientes.
-* **Prevenção de Duplicidade:** Mecanismo de desduplicação na ingestão dos dados para integridade da base consolidada.
-* **Consolidação em Nuvem (`/api/planilha`):** Endpoint que expõe os dados consolidados prontos para visualização e relatórios operacionais.
+* Offline-First: O app móvel coleta dados e realiza os cálculos mesmo sem internet; quando a conexão é restabelecida, a sincronização é acionada.
+* Autenticação Segura (JWT): Controle de sessão com tokens de expiração programada para tráfego seguro de dados de clientes.
+* Prevenção de Duplicidade: Mecanismo de desduplicação na ingestão dos dados para integridade da base consolidada.
+* Consolidação em Nuvem (/api/planilha): Endpoint que expõe os dados consolidados prontos para visualização e relatórios operacionais.
 
 ### Endpoints da API
 
-| Método | Rota | Descrição | Autenticação |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/api/login` | Emissão de token JWT para a profissional | Pública |
-| `POST` | `/api/sincronizar` | Ingestão e unificação da lista de clientes enviada pelo mobile | `Bearer Token` |
-| `GET` | `/api/planilha` | Consulta da base consolidada de clientes e medidas | Pública (Dev/Admin) |
+* POST /api/login — Emissão de token JWT para a profissional (Acesso Público)
+* POST /api/sincronizar — Ingestão e unificação da lista de clientes enviada pelo mobile (Requer Bearer Token)
+* GET /api/planilha — Consulta da base consolidada de clientes e medidas (Acesso Público para Dev/Admin)
 
 ---
 
-##  Roadmap de Evolução do Produto
+## Roadmap de Evolução do Produto
 
-[ MVP Validado ] ─────────► [ V1: Cotação Local ] ─────────► [ V2: Marketplace ]
-
-Calculadora de custos      - Catálogo de lojas cadastradas  - Pedido de tecido in-app
-
-Gestão de clientes         - Comparador de preços por metro - Logística de entrega rápida
-
-Sincronização em nuvem     - Estimativa no ato do orçamento - Monetização por transação (Take Rate)
+* Etapa 1 (MVP Validado): Calculadora de custos, gestão de clientes e sincronização em nuvem.
+* Etapa 2 (V1 - Cotação Local): Catálogo de lojas cadastradas, comparador de preços por metro e estimativa de insumo no ato do orçamento.
+* Etapa 3 (V2 - Marketplace): Pedido de tecido integrado no app, logística de entrega rápida no ateliê e monetização por transação (Take Rate).
 
 ### Métricas de Sucesso Previstas (Product Analytics)
-* **Time-to-Quote:** Redução de 80% no tempo necessário para enviar um orçamento final à cliente.
-* **Margem Garantida:** Eliminação de prejuízos causados por erro de cálculo manual de metragem.
-* **GMV (Gross Merchandise Value):** Volume financeiro transacionado entre ateliês e lojistas parceiros na Fase 2.
+
+* Time-to-Quote: Redução de 80% no tempo necessário para enviar um orçamento final à cliente.
+* Margem Garantida: Eliminação de prejuízos causados por erro de cálculo manual de metragem.
+* GMV (Gross Merchandise Value): Volume financeiro transacionado entre ateliês e lojistas parceiros na Fase 2.
 
 ---
 
-##  Como Executar o Servidor
+## Como Executar o Servidor
 
-1. Clone o repositório:
-```bash
-git clone [https://github.com/JulieneMonteiro/servidor-costura.git](https://github.com/JulieneMonteiro/servidor-costura.git)
+1. Clone o repositório no seu terminal:
+git clone https://github.com/JulieneMonteiro/servidor-costura.git
+
+2. Acesse a pasta do projeto:
 cd servidor-costura
 
-##  Instale as dependências:
-
+3. Instale as dependências:
 npm install
 
-##  Inicie o servidor:
-npm start
-# ou
+4. Inicie o servidor:
 node server.js
 
-O servidor iniciará na porta 3000.
+O servidor iniciará localmente na porta 3000.
